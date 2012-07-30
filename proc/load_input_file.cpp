@@ -15,6 +15,7 @@ void load_input_file::parse_line (QString &line, size_t line_num)
   if (line.isEmpty ())
     return;
 
+  line.remove ("\r").remove ("\n");
   QStringList list = line.split ("\t");
 
   if (line_num)
