@@ -5,6 +5,8 @@
 #include <QTextCodec>
 #include <QStringList>
 
+#include "phone.h"
+
 void load_input_file::parse_line (QString &line, size_t line_num)
 {
   static QString agency_id = QString::fromUtf8 ("Агентство");
@@ -19,6 +21,19 @@ void load_input_file::parse_line (QString &line, size_t line_num)
     {
       Q_ASSERT (agency_map_id >= 0 && phone_map_id >= 0);
 
+      phone p_num (list[phone_map_id]);
+      if (!p_num.is_ok)
+        return; //< skip line
+
+      if (list[agency_map_id].isEmpty ())
+        {
+          // test grey list ??
+        }
+      else
+        {
+          // black list
+          black_list.insert (p_num.phone_num);
+        }
       qDebug () << agency_id << list[agency_map_id];
       qDebug () << phone_id << list[phone_map_id];
     }
