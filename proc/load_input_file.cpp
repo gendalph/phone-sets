@@ -42,7 +42,7 @@ void load_input_file::parse_line (QString &line, size_t line_num)
       qDebug () << phone_id << phone_map_id;
     }
 
-  qDebug () << list;
+//   qDebug () << list;
 }
 
 load_input_file::load_input_file (const QFileInfo &f) : agency_map_id (-1), phone_map_id (-1)
