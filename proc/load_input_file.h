@@ -3,6 +3,8 @@
 
 #include <QString>
 #include <QFileInfo>
+#include <QSet>
+#include <QMap>
 
 class load_input_file
 {
@@ -15,6 +17,9 @@ public:
   virtual ~load_input_file ();
 
   void parse_line (QString &line, size_t line_num = 0);
+
+  QSet<unsigned long long int> black_list;
+  QMap<unsigned long long int, QStringList> gray_list;
 };
 
 #endif // LOAD_INPUT_FILE_H
