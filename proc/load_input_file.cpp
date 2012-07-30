@@ -27,10 +27,6 @@ load_input_file::load_input_file (const QFileInfo &f)
   char line_str[line_len_max] = {};
   char line_str_utf8[line_len_max * 8] = {};
 
-//   QTextCodec *codec = QTextCodec::codecForName ("Windows-1250");
-//   QTextCodec::setCodecForCStrings (codec);
-//   QTextCodec::ConverterState state_enc;
-
   do
     {
       memset (line_str, 0, line_len_max * sizeof (char));
