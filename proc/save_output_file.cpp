@@ -15,8 +15,10 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
       static QString phone_id  = QString::fromUtf8 ("Телефоны");
       out_text << phone_id << "\n";
 
+      QList<phone_table_model::black_type::key_type> list_to_print = model.black_list.toList ();
+      qSort (list_to_print.begin (), list_to_print.end ());
       phone_table_model::black_type::key_type item;
-      foreach (item, model.black_list)
+      foreach (item, list_to_print)
         {
           out_text << item << "\n";
         }
