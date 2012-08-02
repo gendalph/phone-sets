@@ -40,6 +40,5 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
           out_text << "\n";
         }
     }
-
 }
 
