@@ -2,17 +2,17 @@
 BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\n\x00p\x00h\x00o\x00n\x00e)
 
 [CMake]
-BuildDirs=/home/maxim/proj/phone/build
+BuildDirs[$e]=$HOME/proj/phone/build,$HOME/proj/phone/build.rel
 CMakeDir=/usr/share/cmake/Modules
 Current CMake Binary=file:///usr/bin/cmake
-CurrentBuildDir=file:///home/maxim/proj/phone/build
-CurrentBuildType=Debug
+CurrentBuildDir=file:///home/maxim/proj/phone/build.rel
+CurrentBuildType=RelWithDebInfo
 CurrentInstallDir=
 Extra Arguments=
 ProjectRootRelative=./
 
 [Launch]
-Launch Configurations=Launch Configuration 0
+Launch Configurations=Launch Configuration 0,Launch Configuration 1
 
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
@@ -31,6 +31,21 @@ Project Target=phone,phone
 Use External Terminal=false
 Working Directory=
 isExecutable=false
+
+[Launch][Launch Configuration 1]
+Configured Launch Modes=debug
+Configured Launchers=gdb
+Name=phone
+Type=Native Application
+
+[Launch][Launch Configuration 1][Data]
+Configured from ProjectItem=phone,phone
+Project Target=phone,phone
+Working Directory=file:///home/maxim/proj/phone/build/
+isExecutable=false
+
+[MakeBuilder]
+Number Of Jobs=3
 
 [Project]
 VersionControlSupport=kdevgit
