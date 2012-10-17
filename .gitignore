@@ -10,3 +10,11 @@
 *.lai
 *.la
 *.a
+
+# other
+build/*
+build.rel/*
+data/*
+data.new/*
+save/*
+arc/*
