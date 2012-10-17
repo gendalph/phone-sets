@@ -12,6 +12,7 @@
 *.a
 
 # other
+.kdev4/*
 build/*
 build.rel/*
 data/*
