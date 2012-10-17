@@ -8,7 +8,7 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
 {
   if (!model.black_list.isEmpty ())
     {
-      QFile output_file (out_dir.absoluteFilePath ("black_list.txt"));
+      QFile output_file (out_dir.absoluteFilePath (model.black_list_file_name ()));
       Q_ASSERT (output_file.open (QIODevice::WriteOnly | QIODevice::Text));
       QTextStream out_text (&output_file);
 
@@ -26,7 +26,7 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
 
   if (!model.gray_list.isEmpty ())
     {
-      QFile output_file (out_dir.absoluteFilePath ("gray_list.txt"));
+      QFile output_file (out_dir.absoluteFilePath (model.gray_list_file_name ()));
       Q_ASSERT (output_file.open (QIODevice::WriteOnly | QIODevice::Text));
       QTextStream out_text (&output_file);
 
