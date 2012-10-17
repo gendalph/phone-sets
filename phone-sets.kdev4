@@ -1,4 +1,3 @@
 [Project]
-Name=phone
 Manager=KDevCMakeManager
-VersionControl=
+Name=phone-sets
