@@ -131,8 +131,13 @@ void MainWindow::on_actionRun_triggered ()
         qDebug () << QString::fromUtf8 ("Пропускаю файл: %1").arg (path);
     }
 
-  tableView->setModel (model);
+  // sort by price
+  QSortFilterProxyModel *proxy_model = new QSortFilterProxyModel (this);
+  proxy_model->setSourceModel (model);
+  tableView->setModel (proxy_model);
+  tableView->setSortingEnabled (1);
   tableView->resizeColumnsToContents ();
+  tableView->sortByColumn (12, Qt::DescendingOrder);
 //   qDebug () << QString::fromUtf8 ("Чёрный список") << model->black_list;
 //   qDebug () << QString::fromUtf8 ("Белый список") << model->gray_list;
 }
