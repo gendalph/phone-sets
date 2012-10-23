@@ -16,6 +16,6 @@
 build/*
 build.rel/*
 data/*
-data.new/*
+data.new*
 save/*
 arc/*
