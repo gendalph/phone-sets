@@ -8,6 +8,7 @@ void phone::check_phone_to_flags (phone_table_model::black_type black_list, int 
   switch (phone_num_local)
     {
       case 8495:
+      case 8496:
       case 8499:
         if (phone_num > 0)
           phone_num = -phone_num;
