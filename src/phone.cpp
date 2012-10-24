@@ -28,6 +28,7 @@ void phone::check_phone_to_flags (phone_table_model::black_type black_list, int 
 }
 
 phone::phone (const QString &phone_str, phone_table_model::black_type black_list, int init_black_list)
+  : phone_num (-1), flags (0)
 {
   QString phone_local = phone_str;
   phone_local.remove ("-");
