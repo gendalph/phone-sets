@@ -6,6 +6,7 @@
 #include <QToolBar>
 #include <QProgressBar>
 #include <QXmlNamePool>
+#include <QSortFilterProxyModel>
 
 #include "ui_mainwindow.h"
 #include <settings.h>
@@ -22,6 +23,7 @@ public:
 
   settings set_app;
   phone_table_model *model;
+  QSortFilterProxyModel *proxy_model;
 
 private slots:
   void on_actionOpenDirectory_triggered ();

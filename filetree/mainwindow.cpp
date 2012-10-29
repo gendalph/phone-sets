@@ -37,6 +37,8 @@ MainWindow::MainWindow () : m_fileTree (m_namePool)
   createToolBars ();
 
   model = new phone_table_model (this);
+  proxy_model = new QSortFilterProxyModel (this);
+  proxy_model->setSourceModel (model);
 
   // Set up the font.
   {
@@ -135,8 +137,6 @@ void MainWindow::on_actionRun_triggered ()
     }
 
   // sort by price
-  QSortFilterProxyModel *proxy_model = new QSortFilterProxyModel (this);
-  proxy_model->setSourceModel (model);
   tableView->setModel (proxy_model);
   tableView->setSortingEnabled (1);
   tableView->resizeColumnsToContents ();
@@ -210,11 +210,11 @@ void MainWindow::on_actionSave_triggered ()
 void MainWindow::saveToDirectory (const QString &directory)
 {
   QDir out_dir = QDir (directory);
-  Q_ASSERT (out_dir.exists () && model);
+  Q_ASSERT (out_dir.exists () && model && proxy_model);
 
   set_app.setValue ("save_dir", directory.toUtf8 ());
 
-  save_output_file out_data (out_dir, *model);
+  save_output_file out_data (out_dir, *model, *proxy_model);
   statusbar->showMessage (tr ("File saved to dir %1. Black %2. Gray %3")
     .arg (directory).arg (model->black_list.size ()).arg (model->gray_list.size ()));
 }

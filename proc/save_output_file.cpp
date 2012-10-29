@@ -5,7 +5,7 @@
 
 #include "phone_table_model.h"
 
-save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
+save_output_file::save_output_file (QDir &out_dir, phone_table_model &model, QSortFilterProxyModel &proxy_model)
 {
   if (!model.black_list.isEmpty ())
     {
@@ -36,9 +36,12 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
       static QString phone_id  = QString::fromUtf8 ("Телефоны");
       out_text << phone_id << "\n";
 
-      foreach (const QStringList &item, model.gray_list)
+      QList<phone_table_model::gray_type::key_type> keys = model.gray_list.keys ();
+      for (int proxy_row = 0; proxy_row < proxy_model.rowCount (); proxy_row++)
         {
-          foreach (const QString &item_l, item)
+          int i_row = proxy_model.mapToSource (proxy_model.index (proxy_row, 0)).row ();
+          qDebug () << i_row << keys[i_row] << model.gray_list[keys[i_row]];
+          foreach (const QString &item_l, model.gray_list[keys[i_row]])
             out_text << "\t" << item_l;
           out_text << "\n";
         }
