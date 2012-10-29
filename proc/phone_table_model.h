@@ -19,7 +19,7 @@ public:
   virtual int rowCount (const QModelIndex &parent = QModelIndex()) const;
 
   static QString black_list_file_name () { return "black_list.txt"; }
-  static QString gray_list_file_name () { return "gray_list.txt"; }
+  static QString gray_list_file_name ();
 
   // members types
   typedef QSet<long long int> black_type;

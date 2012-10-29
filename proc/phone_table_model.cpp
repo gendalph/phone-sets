@@ -1,4 +1,18 @@
 #include "phone_table_model.h"
+#include <QDateTime>
+#include <QDateTime>
+
+QString phone_table_model::gray_list_file_name ()
+{
+  QString res = "gray_list.txt";
+  if (1)
+    {
+      QDateTime current_date_time = QDateTime::currentDateTime ();
+      res = current_date_time.toString (Qt::ISODate) + ".txt";
+    }
+
+  return res;
+}
 
 QVariant phone_table_model::data (const QModelIndex &index, int role) const
 {

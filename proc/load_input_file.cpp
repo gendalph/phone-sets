@@ -16,7 +16,7 @@ void load_input_file::parse_line (QString &line, size_t line_num)
   if (line.isEmpty ())
     return;
 
-  line.remove ("\r").remove ("\n");
+  line.remove ("\r\n");
   QStringList list = line.split ("\t");
 
   if (line_num)
@@ -52,8 +52,8 @@ void load_input_file::parse_line (QString &line, size_t line_num)
         {
           // black list
           model->black_list.insert (p_num.phone_num);
-          if (agency_map_id != -1)
-            qDebug () << agency_id << list[agency_map_id];
+//          if (agency_map_id != -1)
+//            qDebug () << agency_id << list[agency_map_id];
         }
 
 //       qDebug () << phone_id << list[phone_map_id];
@@ -74,8 +74,8 @@ void load_input_file::parse_line (QString &line, size_t line_num)
       agency_map_id = model->title_map.value (agency_id, -1);
       phone_map_id = model->title_map.value (phone_id, -1);
 
-      qDebug () << agency_id << agency_map_id;
-      qDebug () << phone_id << phone_map_id;
+//      qDebug () << agency_id << agency_map_id;
+//      qDebug () << phone_id << phone_map_id;
     }
 
 //   qDebug () << list;
@@ -89,10 +89,10 @@ load_input_file::load_input_file (load_thread *thread, const QFileInfo &f, phone
   input_file.open (QIODevice::ReadOnly);
 
   // parse line
-  ssize_t line_len = 0;
-  const size_t line_len_max = 1024 * 4;
+  qint64 line_len = 0;
+  const size_t line_len_max = 1024, line_len_utf8_max = line_len_max * 4;
   char line_str[line_len_max] = {};
-  char line_str_utf8[line_len_max * 8] = {};
+  char line_str_utf8[line_len_utf8_max] = {};
 
   qint64 file_size = f.size (), read_size = 0;
   qint64 line_num = 0;
@@ -104,7 +104,7 @@ load_input_file::load_input_file (load_thread *thread, const QFileInfo &f, phone
 
       if (line_len > 1)
         {
-          convert_unknown_string_to_utf8 (line_str, line_str_utf8, line_len_max * 8);
+          convert_unknown_string_to_utf8 (line_str, line_str_utf8, line_len_utf8_max);
           QString local_line = QString::fromUtf8 (line_str_utf8);
           parse_line (local_line, line_num++);
 
