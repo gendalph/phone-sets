@@ -66,7 +66,7 @@ int convert_unknown_string_to_utf8 (
 
   //cbMultiByte parameter should contain the size of input_string in bytes,
   //else MultiByteToWideChar function can falsely identify cp1251 string as utf8 string.
-  ret = MultiByteToWideChar (CP_UTF8, MB_ERR_INVALID_CHARS, input_string, CONVERT_LEN_SHORT_STRING strlen (input_string), 0, 0);
+  ret = MultiByteToWideChar (CP_UTF8, MB_ERR_INVALID_CHARS, input_string, strlen (input_string), 0, 0);
   if (ret > 0)
     // Already correct UTF-8 string
     {

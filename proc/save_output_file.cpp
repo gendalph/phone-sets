@@ -27,7 +27,7 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
   if (!model.gray_list.isEmpty ())
     {
       QFile output_file (out_dir.absoluteFilePath (model.gray_list_file_name ()));
-      Q_ASSERT_X (output_file.open (QIODevice::WriteOnly | QIODevice::Text), "save_output_file", output_file.errorString ().data ().c_str ());
+      Q_ASSERT_X (output_file.open (QIODevice::WriteOnly | QIODevice::Text), "save_output_file", output_file.errorString ().toLocal8Bit ());
       QTextStream out_text (&output_file);
 
       static QString phone_id  = QString::fromUtf8 ("Телефоны");
