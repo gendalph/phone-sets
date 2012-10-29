@@ -8,7 +8,7 @@ QString phone_table_model::gray_list_file_name ()
   if (1)
     {
       QDateTime current_date_time = QDateTime::currentDateTime ();
-      res = current_date_time.toString (Qt::ISODate) + ".txt";
+      res = current_date_time.toString (QString ("yyyy-MM-dd--hh-mm-ss")) + ".txt";
     }
 
   return res;

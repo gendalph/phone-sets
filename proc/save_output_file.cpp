@@ -1,6 +1,7 @@
 #include "save_output_file.h"
 
 #include <QTextStream>
+#include <QDebug>
 
 #include "phone_table_model.h"
 
@@ -26,7 +27,9 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model)
 
   if (!model.gray_list.isEmpty ())
     {
-      QFile output_file (out_dir.absoluteFilePath (model.gray_list_file_name ()));
+      QString output_file_str = out_dir.absoluteFilePath (model.gray_list_file_name ());
+      QFile output_file (output_file_str);
+      qDebug () << output_file_str;
       Q_ASSERT_X (output_file.open (QIODevice::WriteOnly | QIODevice::Text), "save_output_file", output_file.errorString ().toLocal8Bit ());
       QTextStream out_text (&output_file);
 
