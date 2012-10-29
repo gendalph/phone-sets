@@ -93,12 +93,15 @@ MainWindow::MainWindow () : m_fileTree (m_namePool)
     }
 
 // ----------------------------------------------------------------------------
-  path = set_app.value ("data_dir").toString ();
+  path = set_app.value ("data_dir", ""/*QDir::homePath ()*/).toString ();
+  QString dir;
+  if (!path.isEmpty ())
+    {
+      dir = path;
+      qDebug () << dir;
+    }
 
-  const QString dir (path);
-  qDebug () << dir;
-
-  if (QDir (dir).exists ())
+  if (!dir.isEmpty () && QDir (dir).exists ())
     {
       loadDirectory (dir);
     }

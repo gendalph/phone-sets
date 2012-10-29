@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 #ifdef _WIN32
+const int CHAR_BUF_LEN = 1024*4;
 #include <windows.h>
 #endif // _WIN32
 

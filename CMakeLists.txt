@@ -1,6 +1,20 @@
-project(phone)
+project (phone)
 cmake_minimum_required (VERSION 2.6)
-find_package (Qt4 REQUIRED QtCore QtGui QtXml)
+
+if (MSVC)
+  add_definitions (/MT)
+  add_definitions (/MP)
+  add_definitions (/D_CRT_SECURE_NO_WARNINGS)
+  set (CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} /NODEFAULTLIB:LIBCMT")
+  set (phone_libs
+    imm32.lib
+#   msimg32.lib
+    winmm.lib
+    ws2_32.lib
+  )
+endif (MSVC)
+
+find_package (Qt4 REQUIRED QtMain QtCore QtGui QtXml QtNetwork)
 enable_testing ()
 
 include_directories (${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
@@ -40,9 +54,10 @@ qt4_wrap_cpp (phone_SRCS_MOC filetree/mainwindow.h
 qt4_wrap_ui (phone_SRCS_UI filetree/mainwindow.ui)
 qt4_add_resources (phone_SRCS_RES queries.qrc)
 
-add_executable (phone ${phone_SRCS} ${phone_SRCS_MOC} ${phone_SRCS_UI} ${phone_SRCS_RES})
-target_link_libraries (phone ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY}
-  ${QT_QTXML_LIBRARY} ${QT_QTXMLPATTERNS_LIBRARY})
+add_executable (phone WIN32 ${phone_SRCS} ${phone_SRCS_MOC} ${phone_SRCS_UI} ${phone_SRCS_RES})
+target_link_libraries (phone ${QT_QTMAIN_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY}
+  ${QT_QTXML_LIBRARY} ${QT_QTXMLPATTERNS_LIBRARY} ${QT_QTNETWORK_LIBRARY}
+  ${phone_libs})
 
 if (UNIX)
   add_custom_target (gitk    COMMAND gitk --all WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
