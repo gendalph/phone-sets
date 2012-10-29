@@ -24,10 +24,7 @@ void phone::check_phone_to_flags (phone_table_model::black_type black_list, int 
     }
 
   if (is_black)
-    {
-      if (black_list.constFind (phone_num) != black_list.constEnd ())
-        black_list.insert (phone_num);
-    }
+    black_list.insert (phone_num);
 }
 
 phone::phone (const QString &phone_str, phone_table_model::black_type black_list, int init_black_list)
