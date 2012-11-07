@@ -140,7 +140,7 @@ void MainWindow::on_actionRun_triggered ()
   tableView->setModel (proxy_model);
   tableView->setSortingEnabled (1);
   tableView->resizeColumnsToContents ();
-  tableView->sortByColumn (12, Qt::DescendingOrder);
+  tableView->sortByColumn (12, Qt::AscendingOrder);
 //   qDebug () << QString::fromUtf8 ("Чёрный список") << model->black_list;
 //   qDebug () << QString::fromUtf8 ("Белый список") << model->gray_list;
 }
