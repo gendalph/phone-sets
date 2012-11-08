@@ -40,7 +40,7 @@ save_output_file::save_output_file (QDir &out_dir, phone_table_model &model, QSo
       for (int proxy_row = 0; proxy_row < proxy_model.rowCount (); proxy_row++)
         {
           int i_row = proxy_model.mapToSource (proxy_model.index (proxy_row, 0)).row ();
-          qDebug () << i_row << keys[i_row] << model.gray_list[keys[i_row]];
+//          qDebug () << i_row << keys[i_row] << model.gray_list[keys[i_row]];
           foreach (const QString &item_l, model.gray_list[keys[i_row]])
             out_text << "\t" << item_l;
           out_text << "\n";
