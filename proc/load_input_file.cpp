@@ -22,7 +22,9 @@ void load_input_file::parse_line (QString &line, size_t line_num)
   if (line_num)
     {
       if (!init_black_list)
-        Q_ASSERT ((agency_map_id >= 0 || init_black_list) && phone_map_id >= 0);
+        {
+          // Q_ASSERT ((agency_map_id >= 0 || init_black_list) && phone_map_id >= 0);
+        }
       else
         {
           if (phone_map_id < 0)
@@ -70,6 +72,9 @@ void load_input_file::parse_line (QString &line, size_t line_num)
         }
 
 //       ("К", "Метро", "ОтМ", "Улица", "№ дома", "Дом", "Площадь", "Б", "Т", "С", "П", "Цена,руб", "Дата", "Агентство", "Телефоны", "
+
+// новая версия - формат поменялся 2013 04 24
+//      К	Метро	От М	Улица	№ дома	Дом	Площадь	Б	Цена,руб	Цена,$	Дата	Источник	Телефоны
 
       agency_map_id = model->title_map.value (agency_id, -1);
       phone_map_id = model->title_map.value (phone_id, -1);
