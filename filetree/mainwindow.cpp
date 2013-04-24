@@ -131,7 +131,7 @@ void MainWindow::on_actionRun_triggered ()
       output_files.append (path.toUtf8 () + "\n");
 
       if (file_info.isFile () && file_info.suffix () == "txt")
-        load_input_file load_data (0, file_info, model, 0);
+        load_input_file load_data (0, file_info, model, 0, progress);
       else
         qDebug () << QString::fromUtf8 ("Пропускаю файл: %1").arg (path);
     }

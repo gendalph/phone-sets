@@ -8,6 +8,7 @@
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
+#include <QProgressBar>
 
 class phone_table_model;
 class load_thread;
@@ -17,7 +18,6 @@ class load_input_file
 public:
 
 private:
-  int agency_map_id; ///< index in list to find agency
   int phone_map_id; ///< index in list to find phone
 
 public:
@@ -25,7 +25,7 @@ public:
 
   phone_table_model *model;
 
-  load_input_file (load_thread *thread, const QFileInfo &f, phone_table_model *model, int init_black_list);
+  load_input_file (load_thread *thread, const QFileInfo &f, phone_table_model *model, int init_black_list, QProgressBar *progress = 0);
   virtual ~load_input_file ();
 
   int init_black_list;
