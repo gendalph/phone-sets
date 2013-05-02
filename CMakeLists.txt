@@ -19,7 +19,7 @@ enable_testing ()
 
 include_directories (${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
 
-set(phone_SRCS
+set (phone_SRCS
   src/phone.h src/phone.cpp
   src/settings.h src/settings.cpp
 
