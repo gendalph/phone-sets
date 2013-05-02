@@ -1,5 +1,9 @@
+cmake_minimum_required (VERSION 2.8.9 FATAL_ERROR)
 project (phone)
-cmake_minimum_required (VERSION 2.6)
+
+set (CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set (CMAKE_AUTOMOC ON)
 
 if (MSVC)
   add_definitions (/MT)
@@ -14,10 +18,8 @@ if (MSVC)
   )
 endif (MSVC)
 
-find_package (Qt4 REQUIRED QtMain QtCore QtGui QtXml QtNetwork)
+find_package (Qt5Widgets REQUIRED Core Gui Xml)
 enable_testing ()
-
-include_directories (${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
 
 set (phone_SRCS
   src/phone.h src/phone.cpp
@@ -47,17 +49,18 @@ add_definitions (${QT_DEFINITIONS})
 include_directories (${CMAKE_BINARY_DIR})
 include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src)
 
-#qt4_automoc (${phone_SRCS})
-
-qt4_wrap_cpp (phone_SRCS_MOC filetree/mainwindow.h
-  proc/phone_table_model.h proc/load_input_file.h src/phone.h)
-qt4_wrap_ui (phone_SRCS_UI filetree/mainwindow.ui)
-qt4_add_resources (phone_SRCS_RES queries.qrc)
+qt5_wrap_ui (phone_SRCS_UI filetree/mainwindow.ui)
+qt5_add_resources (phone_SRCS_RES queries.qrc)
 
 add_executable (phone WIN32 ${phone_SRCS} ${phone_SRCS_MOC} ${phone_SRCS_UI} ${phone_SRCS_RES})
-target_link_libraries (phone ${QT_QTMAIN_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY}
-  ${QT_QTXML_LIBRARY} ${QT_QTXMLPATTERNS_LIBRARY} ${QT_QTNETWORK_LIBRARY}
-  ${phone_libs})
+
+target_link_libraries (phone ${phone_libs})
+
+qt5_use_modules (${PROJECT_NAME} Core)
+qt5_use_modules (${PROJECT_NAME} Gui)
+qt5_use_modules (${PROJECT_NAME} Widgets)
+qt5_use_modules (${PROJECT_NAME} Xml)
+qt5_use_modules (${PROJECT_NAME} XmlPatterns)
 
 if (UNIX)
   add_custom_target (gitk    COMMAND gitk --all WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
