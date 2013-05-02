@@ -1,6 +1,6 @@
-#include <QtCore/QUrl>
-#include <QtCore/QVariant>
-#include <QtXmlPatterns/QXmlNamePool>
+#include <QUrl>
+#include <QVariant>
+#include <QXmlNamePool>
 #include "filetree.h"
 
 /*

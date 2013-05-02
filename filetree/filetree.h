@@ -1,7 +1,7 @@
-#include <QtCore/QFileInfo>
-#include <QtCore/QDir>
-#include <QtCore/QVector>
-#include <QtXmlPatterns/QSimpleXmlNodeModel>
+#include <QFileInfo>
+#include <QDir>
+#include <QVector>
+#include <QSimpleXmlNodeModel>
 
 class FileTree : public QSimpleXmlNodeModel
 {

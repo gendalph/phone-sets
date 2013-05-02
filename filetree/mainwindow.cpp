@@ -2,6 +2,8 @@
 #include <QLibraryInfo>
 #include <QtXmlPatterns>
 #include <QToolBar>
+#include <QFileDialog>
+#include <QMessageBox>
 
 #include "mainwindow.h"
 #include "settings.h"
